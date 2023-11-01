@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class MainCategoryTranslation extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable = ['title'];
 }

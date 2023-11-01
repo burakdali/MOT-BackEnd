@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class RelatedSiteTranslation extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable = ['name'];
 }
