@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('criteria_id')->unsigned();
             $table->string('locale')->index();
             $table->string('title');
+            $table->string('content');
             $table->unique(['locale', 'criteria_id']);
             $table->foreign("criteria_id")->references("id")->on("criterias")->onDelete("cascade");
         });
