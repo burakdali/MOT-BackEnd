@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\LinksResource;
 use App\Models\Link;
 use App\Http\Requests\StoreLinkRequest;
 use App\Http\Requests\UpdateLinkRequest;
@@ -15,9 +16,12 @@ class LinkController extends Controller
      */
     public function index()
     {
-        //
     }
-
+    function getAllLinks()
+    {
+        $links = Link::all();
+        return LinksResource::collection($links);
+    }
     /**
      * Show the form for creating a new resource.
      *

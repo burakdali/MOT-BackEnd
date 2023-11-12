@@ -7,6 +7,7 @@ use App\Http\Controllers\MediaCenterController;
 use App\Http\Controllers\RelatedSiteController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceDetailController;
+use App\Http\Controllers\LinkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,10 +27,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::apiResource('mainCategories', MainCategoryController::class);
-Route::apiResource('relatedSites', RelatedSiteController::class);
-Route::apiResource('friendlySites', FriendlySiteController::class);
-Route::apiResource('services', ServiceController::class);
-Route::apiResource('mediaCenter', MediaCenterController::class);
-Route::apiResource('criterias', CriteriaController::class);
+Route::get('mainCategories', [MainCategoryController::class, 'getAllMainCategories']);
+Route::get('relatedSites', [RelatedSiteController::class, 'getAllRelatedSite']);
+Route::get('friendlySites', [FriendlySiteController::class, "getAllFriendlySite"]);
+Route::get('services', [ServiceController::class, 'getAllServices']);
 Route::get("get_service_details/{id}", [ServiceDetailController::class, "get_service_details"]);
+Route::get('mediaCenter', [MediaCenterController::class, "getAllMediaCenter"]);
+Route::get('criterias', [CriteriaController::class, "getAllCriteria"]);
+Route::get('links', [LinkController::class, "getAllLinks"]);

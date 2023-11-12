@@ -12,6 +12,10 @@ class CriteriaController extends Controller
 
     public function index()
     {
+    }
+
+    function getAllCriteria()
+    {
         $criterias = Criteria::all();
         foreach ($criterias as $criteria) {
             $criteria->titleAR = $criteria->translate('ar')->title;

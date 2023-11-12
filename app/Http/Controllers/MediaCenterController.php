@@ -12,6 +12,9 @@ class MediaCenterController extends Controller
 
     public function index()
     {
+    }
+    function getAllMediaCenter()
+    {
         $mediaCenters = MediaCenter::all();
         foreach ($mediaCenters as $media) {
             $media->titleAR = $media->translate('ar')->title;
@@ -21,7 +24,6 @@ class MediaCenterController extends Controller
         }
         return MediaCenterResource::collection($mediaCenters);
     }
-
 
     public function create()
     {

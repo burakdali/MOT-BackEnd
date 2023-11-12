@@ -12,6 +12,10 @@ class RelatedSiteController extends Controller
 
     public function index()
     {
+    }
+
+    function getAllRelatedSite()
+    {
         $related = RelatedSite::all();
         foreach ($related as $relate) {
             $relate->nameAR = $relate->translate('ar')->name;
@@ -19,8 +23,6 @@ class RelatedSiteController extends Controller
         }
         return RelatedSiteResource::collection($related);
     }
-
-
     public function create()
     {
         //

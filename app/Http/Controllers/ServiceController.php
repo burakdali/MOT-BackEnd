@@ -12,6 +12,9 @@ class ServiceController extends Controller
 
     public function index()
     {
+    }
+    function getAllServices()
+    {
         $services = Service::all();
         foreach ($services as $service) {
             $service->typeAR = $service->translate('ar')->type;
@@ -19,7 +22,6 @@ class ServiceController extends Controller
         }
         return ServiceResource::collection($services);
     }
-
     public function create()
     {
         //

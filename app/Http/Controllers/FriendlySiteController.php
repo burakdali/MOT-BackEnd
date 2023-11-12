@@ -12,6 +12,10 @@ class FriendlySiteController extends Controller
 
     public function index()
     {
+    }
+
+    function getAllFriendlySite()
+    {
         $friendly = FriendlySite::all();
         foreach ($friendly as $friend) {
             $friend->nameAR = $friend->translate('ar')->name;
@@ -19,7 +23,6 @@ class FriendlySiteController extends Controller
         }
         return RelatedSiteResource::collection($friendly);
     }
-
 
     public function create()
     {

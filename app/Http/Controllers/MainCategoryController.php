@@ -12,6 +12,9 @@ class MainCategoryController extends Controller
 
     public function index()
     {
+    }
+    function getAllMainCategories()
+    {
         $categories = MainCategory::all();
         foreach ($categories as $category) {
             $category->titleAR = $category->translate('ar')->title;
