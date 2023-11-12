@@ -36,7 +36,16 @@ class ServiceDetailController extends Controller
      */
     public function store(StoreServiceDetailRequest $request)
     {
-        //
+        $StoreServiceDetail=NEW Service;
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+        $StoreServiceDetail->fill([
+            'image' => $imageName,
+            'ar'=>['type'=>$request->get('ar')['type']],
+            'en'=>['type'=>$request->get('en')['type']],
+        ]);
+        $StoreServiceDetail->save();
+        return redirect()->route('Services_details.index');
     }
 
     /**

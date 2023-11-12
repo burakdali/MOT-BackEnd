@@ -36,7 +36,16 @@ class CriteriaController extends Controller
      */
     public function store(StoreCriteriaRequest $request)
     {
-        //
+        $StoreCriteria=NEW Criteria;
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+        $StoreCriteria->fill([
+            'image' => $imageName,
+            'ar'=>['title'=>$request->get('ar')['title']],
+            'en'=>['title'=>$request->get('en')['title']],
+        ]);
+        $StoreCriteria->save();
+        return redirect()->route('criteria.index');
     }
 
     /**

@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Link extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable = [
+        'facebook',
+        'instagram',
+        'x',
+        'linked_in',
+        'location',
+        'phone_number',
+        'email',
+    ];
 }

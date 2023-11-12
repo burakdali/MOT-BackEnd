@@ -15,9 +15,9 @@ class MediaCenterTranslationController extends Controller
      */
     public function index()
     {
-        //
+        $MediaTranslation=MediaCenterTranslation::all();
+        return view('media_center.media_center',compact('MediaTranslation'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -25,7 +25,8 @@ class MediaCenterTranslationController extends Controller
      */
     public function create()
     {
-        //
+        $media_center= MediaCenterTranslation::all();
+        return view('media_center.create_media',compact('media_center'));
     }
 
     /**
@@ -56,9 +57,10 @@ class MediaCenterTranslationController extends Controller
      * @param  \App\Models\MediaCenterTranslation  $mediaCenterTranslation
      * @return \Illuminate\Http\Response
      */
-    public function edit(MediaCenterTranslation $mediaCenterTranslation)
+    public function edit( $id)
     {
-        //
+        $MediaTranslation=MediaCenterTranslation::find($id);
+        return view('media_center.edit_media', compact('MediaTranslation'));
     }
 
     /**
@@ -68,9 +70,12 @@ class MediaCenterTranslationController extends Controller
      * @param  \App\Models\MediaCenterTranslation  $mediaCenterTranslation
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMediaCenterTranslationRequest $request, MediaCenterTranslation $mediaCenterTranslation)
+    public function update( Request $request ,$id)
     {
-        //
+        $MediaTranslation=MediaCenterTranslation::find($id);
+        $MediaTranslation->update($request->all());
+        return redirect()->route('media_center.index');
+
     }
 
     /**
@@ -79,8 +84,10 @@ class MediaCenterTranslationController extends Controller
      * @param  \App\Models\MediaCenterTranslation  $mediaCenterTranslation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MediaCenterTranslation $mediaCenterTranslation)
+    public function destroy( $id)
     {
-        //
+        $MediaTranslation=MediaCenterTranslation::find($id);
+        $MediaTranslation->delete();
+        return redirect()->route('media_center.index');
     }
 }

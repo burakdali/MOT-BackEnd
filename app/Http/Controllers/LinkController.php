@@ -15,7 +15,8 @@ class LinkController extends Controller
      */
     public function index()
     {
-        //
+        $link= Link::all();
+        return view('Minister.Links' , compact('link'));
     }
 
     /**
@@ -25,7 +26,8 @@ class LinkController extends Controller
      */
     public function create()
     {
-        //
+        $link= Link::all();
+        return view('Minister.create_links',compact('link'));
     }
 
     /**
@@ -36,7 +38,17 @@ class LinkController extends Controller
      */
     public function store(StoreLinkRequest $request)
     {
-        //
+        $request->validate([
+            'facebook'      => 'required',
+            'instagram'     => 'required',
+            'x'             => 'required',
+            'linked_in'     => 'required',
+            'location'      => 'required',
+            'phone_number'  => 'required',
+            'email'         => 'required',
+        ]);
+        Link::create($request->post());
+        return redirect()->route('Links.index');
     }
 
     /**
@@ -56,9 +68,11 @@ class LinkController extends Controller
      * @param  \App\Models\Link  $link
      * @return \Illuminate\Http\Response
      */
-    public function edit(Link $link)
+    public function edit($id )
     {
-        //
+        $link=Link::find($id);
+        return view('Minister.edit_link',compact('link'));
+
     }
 
     /**
@@ -70,7 +84,19 @@ class LinkController extends Controller
      */
     public function update(UpdateLinkRequest $request, Link $link)
     {
-        //
+        $request->validate([
+            'facebook'      => 'required',
+            'instagram'     => 'required',
+            'x'             => 'required',
+            'linked_in'     => 'required',
+            'location'      => 'required',
+            'phone_number'  => 'required',
+            'email'         => 'required',
+        ]);
+
+        $link->fill($request->post())->save();
+
+        return redirect()->route('links.index');
     }
 
     /**
@@ -79,8 +105,11 @@ class LinkController extends Controller
      * @param  \App\Models\Link  $link
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Link $link)
+    public function destroy($id )
     {
-        //
+        $link= Link::find($id);
+        $link->delete();
+        return redirect()->route('Links.index');
     }
+
 }

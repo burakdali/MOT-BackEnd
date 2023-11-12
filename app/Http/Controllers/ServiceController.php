@@ -15,7 +15,6 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -36,7 +35,13 @@ class ServiceController extends Controller
      */
     public function store(StoreServiceRequest $request)
     {
-        //
+        $StoreService=NEW Service;
+        $StoreService->fill([
+            'ar'=>['type'=>$request->get('ar')['type']],
+            'en'=>['type'=>$request->get('en')['type']],
+        ]);
+        $StoreService->save();
+        return redirect()->route('all_services.index');
     }
 
     /**

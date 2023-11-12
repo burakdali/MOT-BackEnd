@@ -15,7 +15,7 @@ class MainCategoryController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -25,7 +25,6 @@ class MainCategoryController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -36,7 +35,13 @@ class MainCategoryController extends Controller
      */
     public function store(StoreMainCategoryRequest $request)
     {
-        //
+        $MainCategory=NEW MainCategory;
+        $MainCategory->fill([
+            'ar'=>['title'=>$request->get('ar')['title']],
+            'en'=>['title'=>$request->get('en')['title']],
+        ]);
+        $MainCategory->save();
+        return redirect()->route('all_category.index');
     }
 
     /**

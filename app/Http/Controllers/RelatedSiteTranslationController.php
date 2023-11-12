@@ -15,7 +15,8 @@ class RelatedSiteTranslationController extends Controller
      */
     public function index()
     {
-        //
+        $RelatedSite=RelatedSiteTranslation::all();
+        return view('Minister.Related_Site',compact('RelatedSite'));
     }
 
     /**
@@ -25,7 +26,8 @@ class RelatedSiteTranslationController extends Controller
      */
     public function create()
     {
-        //
+        $RelatedSite= RelatedSiteTranslation::all();
+        return view('Minister.createRelatedSite',compact('RelatedSite'));
     }
 
     /**
@@ -56,9 +58,10 @@ class RelatedSiteTranslationController extends Controller
      * @param  \App\Models\RelatedSiteTranslation  $relatedSiteTranslation
      * @return \Illuminate\Http\Response
      */
-    public function edit(RelatedSiteTranslation $relatedSiteTranslation)
+    public function edit( $id)
     {
-        //
+        $RelatedSite=RelatedSiteTranslation::find($id);
+        return view('Minister.edit_related_site', compact('RelatedSite'));
     }
 
     /**
@@ -68,9 +71,12 @@ class RelatedSiteTranslationController extends Controller
      * @param  \App\Models\RelatedSiteTranslation  $relatedSiteTranslation
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRelatedSiteTranslationRequest $request, RelatedSiteTranslation $relatedSiteTranslation)
+    public function update( Request $request ,$id)
     {
-        //
+        $RelatedSite=RelatedSiteTranslation::find($id);
+        $RelatedSite->update($request->all());
+        return redirect()->route('Related_Site.index');
+
     }
 
     /**
@@ -79,8 +85,10 @@ class RelatedSiteTranslationController extends Controller
      * @param  \App\Models\RelatedSiteTranslation  $relatedSiteTranslation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RelatedSiteTranslation $relatedSiteTranslation)
+    public function destroy( $id)
     {
-        //
+        $RelatedSite=RelatedSiteTranslation::find($id);
+        $RelatedSite->delete();
+        return redirect()->route('Related_Site.index');
     }
 }

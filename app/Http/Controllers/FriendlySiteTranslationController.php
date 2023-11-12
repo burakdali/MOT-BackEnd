@@ -15,7 +15,8 @@ class FriendlySiteTranslationController extends Controller
      */
     public function index()
     {
-        //
+        $FriendlySite=FriendlySiteTranslation::all();
+        return view('Minister.Friendly_Site',compact('FriendlySite'));
     }
 
     /**
@@ -25,7 +26,8 @@ class FriendlySiteTranslationController extends Controller
      */
     public function create()
     {
-        //
+        $FriendlySite= FriendlySiteTranslation::all();
+        return view('Minister.create_Freindly_site',compact('FriendlySite'));
     }
 
     /**
@@ -56,9 +58,10 @@ class FriendlySiteTranslationController extends Controller
      * @param  \App\Models\FriendlySiteTranslation  $friendlySiteTranslation
      * @return \Illuminate\Http\Response
      */
-    public function edit(FriendlySiteTranslation $friendlySiteTranslation)
+    public function edit($id)
     {
-        //
+        $FriendlySite = FriendlySiteTranslation::find($id);
+        return view('Minister.edit_friendly_site', compact('FriendlySite'));
     }
 
     /**
@@ -68,9 +71,11 @@ class FriendlySiteTranslationController extends Controller
      * @param  \App\Models\FriendlySiteTranslation  $friendlySiteTranslation
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFriendlySiteTranslationRequest $request, FriendlySiteTranslation $friendlySiteTranslation)
+    public function update( Request $request ,$id)
     {
-        //
+        $FriendlySite = FriendlySiteTranslation::find($id);
+        $FriendlySite->update($request->all());
+        return redirect()->route('Friendly_Site.index');
     }
 
     /**
@@ -79,8 +84,10 @@ class FriendlySiteTranslationController extends Controller
      * @param  \App\Models\FriendlySiteTranslation  $friendlySiteTranslation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FriendlySiteTranslation $friendlySiteTranslation)
+    public function destroy( $id)
     {
-        //
+        $FriendlySite = FriendlySiteTranslation::find($id);
+        $FriendlySite->delete();
+        return redirect()->route('Friendly_Site.index');
     }
 }

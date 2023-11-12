@@ -15,7 +15,8 @@ class ServiceTranslationController extends Controller
      */
     public function index()
     {
-        //
+        $services=ServiceTranslation::all();
+        return view('services.all_services',compact('services'));
     }
 
     /**
@@ -25,7 +26,8 @@ class ServiceTranslationController extends Controller
      */
     public function create()
     {
-        //
+        $services=ServiceTranslation::all();
+        return view('services.create_services',compact('services'));
     }
 
     /**
@@ -79,8 +81,10 @@ class ServiceTranslationController extends Controller
      * @param  \App\Models\ServiceTranslation  $serviceTranslation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ServiceTranslation $serviceTranslation)
+    public function destroy( $id)
     {
-        //
+        $services=ServiceTranslation::find($id);
+        $services->delete();
+        return redirect()->route('all_services.index');
     }
 }

@@ -9,6 +9,6 @@ use Astrotomic\Translatable\Translatable;
 
 class MainCategory extends Model implements TranslatableContract
 {
-    use HasFactory, Translatable;
+    use  Translatable;
     public $translatedAttributes = ['title'];
 }
