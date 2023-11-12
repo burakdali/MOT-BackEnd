@@ -32,7 +32,17 @@ class FriendlySiteController extends Controller
 
     public function store(StoreFriendlySiteRequest $request)
     {
-        //
+        $StoreFriendlySite=NEW FriendlySite;
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+        $StoreFriendlySite->fill([
+            'link'  => $request->get('link'),
+            'image' => $imageName,
+            'ar'=>['name'=>$request->get('ar')['name']],
+            'en'=>['name'=>$request->get('en')['name']],
+        ]);
+        $StoreFriendlySite->save();
+        return redirect()->route('Friendly_Site.index');
     }
 
     public function show(FriendlySite $friendlySite)

@@ -33,7 +33,16 @@ class MediaCenterController extends Controller
 
     public function store(StoreMediaCenterRequest $request)
     {
-        //
+        $StoreMedia=NEW MediaCenter;
+        $StoreMedia->fill([
+            'ar'=>['title'=>$request->get('ar')['title'],
+                    'content'=>$request->get('ar')['content']
+                    ],
+            'en'=>['title'=>$request->get('en')['title'],
+                  'content'=>$request->get('en')['content']],
+        ]);
+        $StoreMedia->save();
+        return redirect()->route('media_center.index');
     }
 
     public function show(MediaCenter $mediaCenter)

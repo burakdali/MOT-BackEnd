@@ -31,7 +31,17 @@ class RelatedSiteController extends Controller
 
     public function store(StoreRelatedSiteRequest $request)
     {
-        //
+        $StoreRelatedSite=NEW RelatedSite;
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+        $StoreRelatedSite->fill([
+            'link'  => $request->get('link'),
+            'image' => $imageName,
+            'ar'=>['name'=>$request->get('ar')['name']],
+            'en'=>['name'=>$request->get('en')['name']],
+        ]);
+        $StoreRelatedSite->save();
+        return redirect()->route('Related_Site.index');
     }
 
 
