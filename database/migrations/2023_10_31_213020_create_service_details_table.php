@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('service_id')->unsigned();
             $table->string('image');
+            $table->integer('used_times');
             $table->foreign('service_id')->references("id")->on("services")->onDelete("cascade");
             $table->timestamps();
         });

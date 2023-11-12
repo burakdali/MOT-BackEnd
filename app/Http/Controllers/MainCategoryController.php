@@ -2,37 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MainCategoryResource;
 use App\Models\MainCategory;
 use App\Http\Requests\StoreMainCategoryRequest;
 use App\Http\Requests\UpdateMainCategoryRequest;
 
 class MainCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-
+    }
+    function getAllMainCategories()
+    {
+        $categories = MainCategory::all();
+        foreach ($categories as $category) {
+            $category->titleAR = $category->translate('ar')->title;
+            $category->titleEN = $category->translate('en')->title;
+        }
+        return MainCategoryResource::collection($categories);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreMainCategoryRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreMainCategoryRequest $request)
     {
         $MainCategory=NEW MainCategory;
@@ -44,46 +38,24 @@ class MainCategoryController extends Controller
         return redirect()->route('all_category.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\MainCategory  $mainCategory
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(MainCategory $mainCategory)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\MainCategory  $mainCategory
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(MainCategory $mainCategory)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateMainCategoryRequest  $request
-     * @param  \App\Models\MainCategory  $mainCategory
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateMainCategoryRequest $request, MainCategory $mainCategory)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\MainCategory  $mainCategory
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(MainCategory $mainCategory)
     {
         //

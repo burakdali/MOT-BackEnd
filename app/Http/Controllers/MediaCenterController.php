@@ -5,35 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\MediaCenter;
 use App\Http\Requests\StoreMediaCenterRequest;
 use App\Http\Requests\UpdateMediaCenterRequest;
+use App\Http\Resources\MediaCenterResource;
 
 class MediaCenterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+    }
+    function getAllMediaCenter()
+    {
+        $mediaCenters = MediaCenter::all();
+        foreach ($mediaCenters as $media) {
+            $media->titleAR = $media->translate('ar')->title;
+            $media->titleEN = $media->translate('en')->title;
+            $media->contentAR = $media->translate('ar')->content;
+            $media->contentEN = $media->translate('en')->content;
+        }
+        return MediaCenterResource::collection($mediaCenters);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreMediaCenterRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(StoreMediaCenterRequest $request)
     {
         $StoreMedia=NEW MediaCenter;
@@ -48,46 +45,24 @@ class MediaCenterController extends Controller
         return redirect()->route('media_center.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\MediaCenter  $mediaCenter
-     * @return \Illuminate\Http\Response
-     */
     public function show(MediaCenter $mediaCenter)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\MediaCenter  $mediaCenter
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(MediaCenter $mediaCenter)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateMediaCenterRequest  $request
-     * @param  \App\Models\MediaCenter  $mediaCenter
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateMediaCenterRequest $request, MediaCenter $mediaCenter)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\MediaCenter  $mediaCenter
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(MediaCenter $mediaCenter)
     {
         //

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MediaCenterTranslation;
-use App\Http\Requests\StoreMediaCenterTranslationRequest;
-use App\Http\Requests\UpdateMediaCenterTranslationRequest;
+use Illuminate\Http\Request;
 
 class MediaCenterTranslationController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -90,4 +89,5 @@ class MediaCenterTranslationController extends Controller
         $MediaTranslation->delete();
         return redirect()->route('media_center.index');
     }
+
 }

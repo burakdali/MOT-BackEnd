@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('media_centers', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('images', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
             $table->string('image');
             $table->timestamps();
         });
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media_centers');
+        Schema::dropIfExists('images');
     }
 };

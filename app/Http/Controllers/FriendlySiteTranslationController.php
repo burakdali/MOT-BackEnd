@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FriendlySiteTranslation;
-use App\Http\Requests\StoreFriendlySiteTranslationRequest;
-use App\Http\Requests\UpdateFriendlySiteTranslationRequest;
+use App\Models\CriteriaTranslation;
+use App\Models\Criteria;
+use App\Http\Requests\StoreCriteriaTranslationRequest;
+use App\Http\Requests\UpdateCriteriaTranslationRequest;
 
 class FriendlySiteTranslationController extends Controller
 {
@@ -15,6 +16,7 @@ class FriendlySiteTranslationController extends Controller
      */
     public function index()
     {
+
         $FriendlySite=FriendlySiteTranslation::all();
         return view('Minister.Friendly_Site',compact('FriendlySite'));
     }
@@ -71,6 +73,7 @@ class FriendlySiteTranslationController extends Controller
      * @param  \App\Models\FriendlySiteTranslation  $friendlySiteTranslation
      * @return \Illuminate\Http\Response
      */
+
     public function update( Request $request ,$id)
     {
         $FriendlySite = FriendlySiteTranslation::find($id);
@@ -84,6 +87,7 @@ class FriendlySiteTranslationController extends Controller
      * @param  \App\Models\FriendlySiteTranslation  $friendlySiteTranslation
      * @return \Illuminate\Http\Response
      */
+
     public function destroy( $id)
     {
         $FriendlySite = FriendlySiteTranslation::find($id);

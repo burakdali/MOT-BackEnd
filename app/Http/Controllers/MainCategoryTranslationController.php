@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\MainCategoryTranslation;
 use App\Models\MainCategory;
 use Illuminate\Validation\Rule;

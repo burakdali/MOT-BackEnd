@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ServiceTranslation;
-use App\Http\Requests\StoreServiceTranslationRequest;
-use App\Http\Requests\UpdateServiceTranslationRequest;
+use Illuminate\Http\Request;
 
 class ServiceTranslationController extends Controller
 {

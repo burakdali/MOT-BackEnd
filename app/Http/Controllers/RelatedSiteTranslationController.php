@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RelatedSiteTranslation;
-use App\Http\Requests\StoreRelatedSiteTranslationRequest;
-use App\Http\Requests\UpdateRelatedSiteTranslationRequest;
+use Illuminate\Http\Request;
 
 class RelatedSiteTranslationController extends Controller
 {
@@ -91,4 +89,5 @@ class RelatedSiteTranslationController extends Controller
         $RelatedSite->delete();
         return redirect()->route('Related_Site.index');
     }
+
 }

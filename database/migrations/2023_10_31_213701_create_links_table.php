@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('x')->nullable();
             $table->text('linked_in')->nullable();
             $table->text('location')->nullable();
+            $table->text('location_link')->nullable();
             $table->text('phone_number')->nullable();
             $table->text('email')->nullable();
         });
