@@ -16,8 +16,6 @@ class CriteriaTranslationController extends Controller
      */
     public function index()
     {
-        $criteria = CriteriaTranslation::all();
-        return view('criteria.criteria', compact('criteria'));
     }
 
     /**
@@ -27,8 +25,6 @@ class CriteriaTranslationController extends Controller
      */
     public function create()
     {
-        $criteria = CriteriaTranslation::all();
-        return view('criteria.create_criteria', compact('criteria'));
     }
 
     /**
@@ -60,8 +56,6 @@ class CriteriaTranslationController extends Controller
      */
     public function edit($id)
     {
-        $criteria = CriteriaTranslation::find($id);
-        return view('criteria.edit_ceiteria', compact('criteria'));
     }
 
     /**
@@ -73,9 +67,6 @@ class CriteriaTranslationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $criteria = CriteriaTranslation::find($id);
-        $criteria->update($request->all());
-        return redirect()->route('criteria.index');
     }
 
     /**
@@ -86,8 +77,5 @@ class CriteriaTranslationController extends Controller
      */
     public function destroy($id)
     {
-        $criteria = CriteriaTranslation::find($id);
-        $criteria->delete();
-        return redirect()->route('criteria.index');
     }
 }
