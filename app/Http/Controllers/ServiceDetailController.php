@@ -6,6 +6,7 @@ use App\Models\ServiceDetail;
 use App\Http\Requests\StoreServiceDetailRequest;
 use App\Http\Requests\UpdateServiceDetailRequest;
 use App\Http\Resources\ServiceDetailResource;
+use App\Models\Service;
 use Illuminate\Support\Facades\Log;
 
 class ServiceDetailController extends Controller
@@ -41,13 +42,13 @@ class ServiceDetailController extends Controller
 
     public function store(StoreServiceDetailRequest $request)
     {
-        $StoreServiceDetail=NEW Service;
-        $imageName = time().'.'.$request->image->extension();
+        $StoreServiceDetail = new Service;
+        $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('images'), $imageName);
         $StoreServiceDetail->fill([
             'image' => $imageName,
-            'ar'=>['type'=>$request->get('ar')['type']],
-            'en'=>['type'=>$request->get('en')['type']],
+            'ar' => ['type' => $request->get('ar')['type']],
+            'en' => ['type' => $request->get('en')['type']],
         ]);
         $StoreServiceDetail->save();
         return redirect()->route('Services_details.index');
