@@ -30,13 +30,14 @@ use  App\Http\Controllers\ServiceDetailTranslationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [MainCategoryTranslationController::class,'index']);
+
+Route::get('/', [MainCategoryTranslationController::class, 'index']);
 
 
 
 /**start all_category Route */
-Route::resource('create_category',MainCategoryController::class);
-Route::resource('all_category',MainCategoryTranslationController::class);
+Route::resource('create_category', MainCategoryController::class);
+Route::resource('all_category', MainCategoryTranslationController::class);
 /** end all_category Route */
 
 
@@ -46,13 +47,13 @@ Route::resource('all_category',MainCategoryTranslationController::class);
 
 
 /**start media_center Route */
-Route::resource('create_media_center',MediaCenterController::class);
-Route::resource('media_center',MediaCenterTranslationController::class);
+Route::resource('create_media_center', MediaCenterController::class);
+Route::resource('media_center', MediaCenterTranslationController::class);
 /** end media_center Route */
 
 
 /**start criteria Route */
-Route::resource('create_criteria',CriteriaController::class);
+Route::resource('create_criteria', CriteriaController::class);
 Route::resource('criteria', CriteriaTranslationController::class);
 /** end criteria Route */
 
@@ -60,22 +61,23 @@ Route::resource('criteria', CriteriaTranslationController::class);
 
 /**start Minister Route */
 
-                     /**Related_Site */
-Route::resource('Related_Site',RelatedSiteTranslationController::class);
+/**Related_Site */
+Route::resource('Related_Site', RelatedSiteTranslationController::class);
 Route::resource('create_Related_Site', RelatedSiteController::class);
 
 
-                     /**Friendly_Site */
-Route::resource('Friendly_Site',FriendlySiteTranslationController::class);
+/**Friendly_Site */
+Route::resource('Friendly_Site', FriendlySiteTranslationController::class);
 Route::resource('create_Friendly_Site', FriendlySiteController::class);
 
-                     /**Links */
-Route::resource('Links',LinkController::class);
+/**Links */
+Route::resource('Links', LinkController::class);
 
 /** end Minister Route */
 
 /**start Services Route */
 Route::resource('all_services', ServiceTranslationController::class);
 Route::resource('create_services', ServiceController::class);
+Route::resource('Services_details', ServiceDetailTranslationController::class);
 
 /** end Services Route */

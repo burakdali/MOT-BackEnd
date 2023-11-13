@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreServiceDetailTranslationRequest;
 use App\Http\Requests\UpdateServiceDetailTranslationRequest;
+use App\Models\ServiceDetail;
 use App\Models\ServiceDetailTranslation;
 use Illuminate\Http\Request;
 
@@ -12,14 +13,20 @@ class ServiceDetailTranslationController extends Controller
 
     public function index()
     {
-        $services_detail = ServiceDetailTranslation::all();
+
+        $services_detail = ServiceDetail::all();
+        foreach ($services_detail as $service) {
+            $service->titleAR = $service->translate('ar')->title;
+            $service->titleEN = $service->translate('en')->title;
+            $service->contentAR = $service->translate('ar')->content;
+            $service->contentEN = $service->translate('en')->content;
+        }
         return view('services.Services_details', compact('services_detail'));
     }
 
 
     public function create()
     {
-        $services_detail = ServiceDetailTranslation::all();
         return view('services.create_services_detail', compact('services_detail'));
     }
 
