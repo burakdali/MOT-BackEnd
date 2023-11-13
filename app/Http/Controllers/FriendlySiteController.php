@@ -20,6 +20,9 @@ class FriendlySiteController extends Controller
         foreach ($friendly as $friend) {
             $friend->nameAR = $friend->translate('ar')->name;
             $friend->nameEN = $friend->translate('en')->name;
+            $imagePath = public_path("" . $friend->image);
+            $imageContents = mb_convert_encoding($imagePath, 'UTF-8', 'ISO-8859-1');
+            $friend->image = $imageContents;
         }
         return RelatedSiteResource::collection($friendly);
     }
@@ -32,14 +35,14 @@ class FriendlySiteController extends Controller
 
     public function store(StoreFriendlySiteRequest $request)
     {
-        $StoreFriendlySite=NEW FriendlySite;
-        $imageName = time().'.'.$request->image->extension();
+        $StoreFriendlySite = new FriendlySite;
+        $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('images'), $imageName);
         $StoreFriendlySite->fill([
             'link'  => $request->get('link'),
             'image' => $imageName,
-            'ar'=>['name'=>$request->get('ar')['name']],
-            'en'=>['name'=>$request->get('en')['name']],
+            'ar' => ['name' => $request->get('ar')['name']],
+            'en' => ['name' => $request->get('en')['name']],
         ]);
         $StoreFriendlySite->save();
         return redirect()->route('Friendly_Site.index');

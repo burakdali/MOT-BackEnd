@@ -33,7 +33,7 @@ all Category
                   <thead>
                     <tr>
                       <th>number</th>
-                      <th>number_category</th>
+                      <th>category number</th>
                       <th>title</th>
                       <th>Action</th>
                     </tr>

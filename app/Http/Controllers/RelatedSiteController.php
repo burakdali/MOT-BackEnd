@@ -20,6 +20,9 @@ class RelatedSiteController extends Controller
         foreach ($related as $relate) {
             $relate->nameAR = $relate->translate('ar')->name;
             $relate->nameEN = $relate->translate('en')->name;
+            $imagePath = public_path("" . $relate->image);
+            $imageContents = mb_convert_encoding($imagePath, 'UTF-8', 'ISO-8859-1');
+            $relate->image = $imageContents;
         }
         return RelatedSiteResource::collection($related);
     }
@@ -31,14 +34,14 @@ class RelatedSiteController extends Controller
 
     public function store(StoreRelatedSiteRequest $request)
     {
-        $StoreRelatedSite=NEW RelatedSite;
-        $imageName = time().'.'.$request->image->extension();
+        $StoreRelatedSite = new RelatedSite;
+        $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('images'), $imageName);
         $StoreRelatedSite->fill([
             'link'  => $request->get('link'),
             'image' => $imageName,
-            'ar'=>['name'=>$request->get('ar')['name']],
-            'en'=>['name'=>$request->get('en')['name']],
+            'ar' => ['name' => $request->get('ar')['name']],
+            'en' => ['name' => $request->get('en')['name']],
         ]);
         $StoreRelatedSite->save();
         return redirect()->route('Related_Site.index');

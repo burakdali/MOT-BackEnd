@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Log;
 
 class ServiceDetailController extends Controller
 {
-
-
     function get_service_details($id)
     {
         if ($id == 1) {
@@ -25,6 +23,9 @@ class ServiceDetailController extends Controller
             $service->titleEN = $service->translate('en')->title;
             $service->contentAR = $service->translate('ar')->content;
             $service->contentEN = $service->translate('en')->content;
+            $imagePath = public_path("" . $service->image);
+            $imageContents = mb_convert_encoding($imagePath, 'UTF-8', 'ISO-8859-1');
+            $service->image = $imageContents;
         }
         return ServiceDetailResource::collection($serviceDetails);
     }

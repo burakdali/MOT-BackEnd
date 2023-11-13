@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\FriendlySiteController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MainCategoryController;
 use App\Http\Controllers\MediaCenterController;
 use App\Http\Controllers\RelatedSiteController;
@@ -35,3 +36,4 @@ Route::get("get_service_details/{id}", [ServiceDetailController::class, "get_ser
 Route::get('mediaCenter', [MediaCenterController::class, "getAllMediaCenter"]);
 Route::get('criterias', [CriteriaController::class, "getAllCriteria"]);
 Route::get('links', [LinkController::class, "getAllLinks"]);
+Route::get('images', [ImageController::class, "getAllImages"]);

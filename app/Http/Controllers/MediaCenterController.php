@@ -21,6 +21,9 @@ class MediaCenterController extends Controller
             $media->titleEN = $media->translate('en')->title;
             $media->contentAR = $media->translate('ar')->content;
             $media->contentEN = $media->translate('en')->content;
+            $imagePath = public_path("" . $media->image);
+            $imageContents = mb_convert_encoding($imagePath, 'UTF-8', 'ISO-8859-1');
+            $media->image = $imageContents;
         }
         return MediaCenterResource::collection($mediaCenters);
     }
@@ -33,13 +36,16 @@ class MediaCenterController extends Controller
 
     public function store(StoreMediaCenterRequest $request)
     {
-        $StoreMedia=NEW MediaCenter;
+        $StoreMedia = new MediaCenter;
         $StoreMedia->fill([
-            'ar'=>['title'=>$request->get('ar')['title'],
-                    'content'=>$request->get('ar')['content']
-                    ],
-            'en'=>['title'=>$request->get('en')['title'],
-                  'content'=>$request->get('en')['content']],
+            'ar' => [
+                'title' => $request->get('ar')['title'],
+                'content' => $request->get('ar')['content']
+            ],
+            'en' => [
+                'title' => $request->get('en')['title'],
+                'content' => $request->get('en')['content']
+            ],
         ]);
         $StoreMedia->save();
         return redirect()->route('media_center.index');
