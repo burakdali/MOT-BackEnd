@@ -46,7 +46,7 @@ all Category
                         <td>{{$category->title}}</td>
                         <td>
                             <form action="{{route('all_category.destroy', $category->id) }}" method="Post">
-                                <a class="btn btn-primary" href="{{route('all_category.edit', $category->id) }}">Edit</a>
+                                <a class="btn btn-primary" href="{{route('all_category.edit', $category->main_category_id) }}">Edit</a>
                                  @csrf
                                   @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>

@@ -47,8 +47,12 @@ class MainCategoryTranslationController extends Controller
 
     public function update(Request $request, $id)
     {
-        $categories = MainCategoryTranslation::find($id);
-        $categories->update($request->all());
+        $category = MainCategory::find($id);
+        $category->fill([
+            'en' => ['title' => $request->get('en')['title']],
+            'ar' => ['title' => $request->get('ar')['title']],
+        ]);
+        $category->save();
         return redirect()->route('all_category.index');
     }
 

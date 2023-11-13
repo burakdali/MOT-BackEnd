@@ -32,7 +32,7 @@
                                                     <div class="form-group">
                                                             <label>title_{{ $key }} </label>
                                                             <div class="input-group">
-                                                                <input type="text" name="{{$key}}[title_]" class="form-control" data-inputmask="'alias': 'ip'" data-mask>
+                                                                <input type="text" name="{{$key}}[title]" class="form-control" data-inputmask="'alias': 'ip'" data-mask>
                                                             </div>
                                                     </div>
                                                     <br>
