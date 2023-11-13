@@ -33,8 +33,9 @@ all services
                   <thead>
                     <tr>
                       <th>number</th>
-                      <th>number_service</th>
-                      <th>type</th>
+                      <th>id</th>
+                      <th>type in English</th>
+                      <th>type in Arabic</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -42,10 +43,11 @@ all services
                     @foreach ($services as $service)
                         <tr>
                         <td>{{$loop->index}}</td>
-                        <td>{{$service->serviece_id}}</td>
-                        <td>{{$service->type}}</td>
+                        <td>{{$service->id}}</td>
+                        <td>{{$service->typeEN}}</td>
+                        <td>{{$service->typeAR}}</td>
                             <td>
-                                <form action="{{route('all_services.destroy')}}" method="Post">
+                                <form action="{{route('all_services.destroy', $service->id)}}" method="Post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Delete</button>

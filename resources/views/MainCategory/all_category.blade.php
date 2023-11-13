@@ -32,21 +32,21 @@ all Category
                 <table class="table table-head-fixed text-nowrap">
                   <thead>
                     <tr>
-                      <th>number</th>
-                      <th>category number</th>
-                      <th>title</th>
+                      <th>ID</th>
+                      <th>Title in English</th>
+                      <th>Title in Arabic</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ( $mainCategory as $category)
+                    @foreach ( $categories as $category)
                      <tr>
-                       <td>{{$loop->index}}</td>
-                       <td>{{$category->main_category_id}}</td>
-                        <td>{{$category->title}}</td>
+                       <td>{{$category->id}}</td>
+                        <td>{{$category->titleEN}}</td>
+                        <td>{{$category->titleAR}}</td>
                         <td>
                             <form action="{{route('all_category.destroy', $category->id) }}" method="Post">
-                                <a class="btn btn-primary" href="{{route('all_category.edit', $category->main_category_id) }}">Edit</a>
+                                <a class="btn btn-primary" href="{{route('all_category.edit', $category->id) }}">Edit</a>
                                  @csrf
                                   @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>

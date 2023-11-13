@@ -83,7 +83,7 @@
               <li class="nav-item">
                 <a href="{{ url('/' . $page='all_category') }}" class="nav-link">
                   <i class="nav-icon fas fa-chart-pie"></i>
-                  <p>All Categories</p>
+                  <p>Categories</p>
                 </a>
               </li>
             </ul>
@@ -92,7 +92,7 @@
             <a href="#" class="nav-link">
             <i class="nav-icon fas fa-columns"></i>
               <p>
-                Servieses
+                Services
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -106,7 +106,7 @@
               <li class="nav-item">
                 <a href="{{ url('/' . $page='Services_details') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Services details</p>
+                  <p>Service details</p>
                 </a>
               </li>
             </ul>

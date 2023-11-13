@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreServiceTranslationRequest;
 use App\Http\Requests\UpdateServiceTranslationRequest;
+use App\Models\Service;
 use App\Models\ServiceTranslation;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,11 @@ class ServiceTranslationController extends Controller
 
     public function index()
     {
-        $services = ServiceTranslation::all();
+        $services = Service::all();
+        foreach ($services as $service) {
+            $service->typeEN = $service->translate('en', true)->type;
+            $service->typeAR = $service->translate('ar', true)->type;
+        }
         return view('services.all_services', compact('services'));
     }
 

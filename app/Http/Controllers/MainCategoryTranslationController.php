@@ -15,8 +15,12 @@ class MainCategoryTranslationController extends Controller
 
     public function index()
     {
-        $mainCategory = MainCategoryTranslation::all();
-        return view('MainCategory.all_category', compact('mainCategory'));
+        $categories = MainCategory::all();
+        foreach ($categories as $category) {
+            $category->titleEN = $category->translate('en', true)->title;
+            $category->titleAR = $category->translate('ar', true)->title;
+        }
+        return view('MainCategory.all_category', compact('categories'));
     }
 
 
@@ -59,8 +63,8 @@ class MainCategoryTranslationController extends Controller
 
     public function destroy($id)
     {
-        $categories = MainCategoryTranslation::find($id);
-        $categories->delete();
+        $category = MainCategory::find($id);
+        $category->delete();
         return redirect()->route('all_category.index');
     }
 }
